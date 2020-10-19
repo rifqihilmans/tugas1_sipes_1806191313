@@ -12,7 +12,7 @@
 	<artifactId>sipes</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>sipes</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Project Tugas Individu Sipes</description>
 
 	<properties>
 		<java.version>11</java.version>
@@ -44,6 +44,19 @@
 					<artifactId>junit-vintage-engine</artifactId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
 	</dependencies>
 
