@@ -10,5 +10,4 @@ import java.util.Optional;
 public interface PesawatDb extends JpaRepository<PesawatModel, Long> {
     
     Optional<PesawatModel> findById(Long id);
-    Optional<PesawatDb> findByNomorSeri(String nomor_seri);
 }
