@@ -36,6 +36,7 @@ public class PesawatModel {
     private String tempatDibuat;
 
     @NotNull
+    @DateTimeFormat(pattern = "dd-mm-yyyy")
     @Column(name = "tanggal_dibuat", nullable = false)
     private Date tanggalDibuat;
 
