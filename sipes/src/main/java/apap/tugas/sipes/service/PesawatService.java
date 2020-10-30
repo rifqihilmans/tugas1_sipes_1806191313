@@ -20,4 +20,6 @@ public interface PesawatService {
 
     //Method untuk menghapus pesawat
     void deletePesawat(PesawatModel pesawat);
+
+    String setNoSeriPesawat(PesawatModel pesawat);
 }
