@@ -6,6 +6,7 @@ import apap.tugas.sipes.model.TeknisiModel;
 import apap.tugas.sipes.model.TipeModel;
 import apap.tugas.sipes.repository.PesawatTeknisiDb;
 import apap.tugas.sipes.service.PesawatService;
+import apap.tugas.sipes.service.PesawatTeknisiService;
 import apap.tugas.sipes.service.TeknisiService;
 import apap.tugas.sipes.service.TipeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,9 @@ public class PesawatController {
 
     @Autowired
     private PesawatTeknisiDb pesawatTeknisiDb;
+
+    @Autowired
+    private PesawatTeknisiService pesawatTeknisiService;
 
     @GetMapping("/")
     private String home(){
@@ -91,5 +95,15 @@ public class PesawatController {
         }
         model.addAttribute("pesawat", pesawat);
         return "add-pesawat";
+    }
+
+    @RequestMapping(value = "/pesawat/{id}", method = RequestMethod.GET)
+    private String viewDetailPesawat(@PathVariable Long id, Model model){
+        PesawatModel pesawat = pesawatService.getPesawatById(id);
+        List<PesawatTeknisiModel> listPesawatTeknisi = pesawatTeknisiDb.findAllByPesawatId(pesawat.getId());
+        pesawat.setListPesawatTeknisi(listPesawatTeknisi);
+        model.addAttribute("listPesawatTeknisi", listPesawatTeknisi);
+        model.addAttribute("pesawat", pesawat);
+        return "view-pesawat";
     }
 }

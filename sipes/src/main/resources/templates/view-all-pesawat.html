@@ -7,6 +7,7 @@
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
+<div class="container-fluid">
     <nav th:replace="fragments/fragment :: navbar"></nav>
     <h2>Daftar Pesawat</h2>
     <table class="table">
@@ -25,7 +26,7 @@
         <tr th:each="pesawat, iterationStatus : ${listPesawat}">
             <td th:text="${iterationStatus.count}"></td>
             <td th:text="${pesawat.nomorSeri}"></td>
-            <td th:text="${pesawat.tipe.getNama()}"></td>
+            <td th:text="${pesawat.tipe.nama}"></td>
             <td th:text="${pesawat.jenisPesawat}"></td>
             <td th:text="${pesawat.maskapai}"></td>
             <td>
@@ -40,5 +41,6 @@
         </tr>
         </tbody>
     </table>
+</div>
 </body>
 </html>
