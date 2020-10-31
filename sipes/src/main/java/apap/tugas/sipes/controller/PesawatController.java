@@ -121,4 +121,12 @@ public class PesawatController {
         model.addAttribute("pesawat", pesawat);
         return "update-pesawat";
     }
+
+    @RequestMapping(value = "/pesawat/hapus/{id}", method = RequestMethod.GET)
+    private String deletePesawat(@PathVariable Long id, Model model){
+        PesawatModel pesawat = pesawatService.getPesawatById(id);
+        pesawatService.deletePesawat(pesawat);
+        model.addAttribute("pesawat", pesawat);
+        return "delete-pesawat";
+    }
 }
