@@ -52,6 +52,7 @@ public class PesawatServiceImpl implements PesawatService{
             targetPesawat.setMaskapai(pesawat.getMaskapai());
             targetPesawat.setTanggalDibuat(pesawat.getTanggalDibuat());
             targetPesawat.setTempatDibuat(pesawat.getTempatDibuat());
+            targetPesawat.setNomorSeri(setNoSeriPesawat(pesawat));
             pesawatDb.save(targetPesawat);
             return targetPesawat;
         }catch (NullPointerException nullException){

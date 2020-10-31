@@ -106,4 +106,19 @@ public class PesawatController {
         model.addAttribute("pesawat", pesawat);
         return "view-pesawat";
     }
+
+    @RequestMapping(value = "/pesawat/ubah/{id}", method = RequestMethod.GET)
+    private String changePesawatFormPage(@PathVariable Long id, Model model){
+        PesawatModel pesawat = pesawatService.getPesawatById(id);
+        model.addAttribute("pesawat", pesawat);
+        return "form-update-pesawat";
+    }
+
+    @RequestMapping(value = "/pesawat/ubah/{id}", method = RequestMethod.POST)
+    private String changePesawatSubmit(@PathVariable Long id, @ModelAttribute PesawatModel pesawat, Model model){
+        pesawat.setNomorSeri(pesawatService.setNoSeriPesawat(pesawat));
+        PesawatModel newPesawat = pesawatService.updatePesawat(pesawat);
+        model.addAttribute("pesawat", pesawat);
+        return "update-pesawat";
+    }
 }
