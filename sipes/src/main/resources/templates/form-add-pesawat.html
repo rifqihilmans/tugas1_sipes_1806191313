@@ -15,25 +15,25 @@
         <div class="form-group row">
             <label for="inputMaskapai" class="col-sm-2 col-form-label">Maskapai</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputMaskapai" placeholder="Nama Maskapai">
+                <input th:field="*{maskapai}" type="text" class="form-control" id="inputMaskapai" placeholder="Nama Maskapai">
             </div>
         </div>
         <div class="form-group row">
             <label for="inputTanggal" class="col-sm-2 col-form-label">Tanggal Dibuat</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputTanggal" placeholder="dd/mm/yyyy">
+                <input th:field="*{tanggalDibuat}" type="date" class="form-control" id="inputTanggal" placeholder="dd/mm/yyyy">
             </div>
         </div>
         <div class="form-group row">
             <label for="inputTempat" class="col-sm-2 col-form-label">Tempat Dibuat</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputTempat" placeholder="Masukkan tempat pesawat dibuat">
+                <input th:field="*{tempatDibuat}" type="text" class="form-control" id="inputTempat" placeholder="Masukkan tempat pesawat dibuat">
             </div>
         </div>
         <div class="form-group row">
             <label for="inputJenis" class="col-sm-2 col-form-label">Jenis</label>
             <div class="col-sm-10">
-                <select name="jenis" id="inputJenis" class="form-control">
+                <select name="jenis" id="inputJenis" class="form-control" th:field="*{jenisPesawat}">
                     <option value="Komersial">Komersial</option>
                     <option value="Militer">Militer</option>
                 </select>
@@ -42,7 +42,7 @@
         <div class="form-group row">
             <label for="inputTipe" class="col-sm-2 col-form-label">Tipe</label>
             <div class="col-sm-10">
-                <select name="tipe" id="inputTipe" class="form-control">
+                <select name="tipe" id="inputTipe" class="form-control" th:field="*{tipe}">
                 <option th:each="tipe : ${listTipe}" th:value="${tipe.id}" th:text="${tipe.nama}"></option>
                 </select>
             </div>
@@ -61,6 +61,9 @@
         </div>
         <div class="col-sm-5">
             <button type="submit" class="btn btn-primary" name="save" style="text-align: center">Simpan</button>
+        </div>
+        <div class="col-sm-5">
+            <button type="submit" class="btn btn-primary" name="save" style="text-align: center">Batal</button>
         </div>
     </form>
 </div>

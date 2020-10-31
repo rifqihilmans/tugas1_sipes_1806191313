@@ -6,9 +6,11 @@ import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.sql.Date;
+import java.util.Date;
+
 import java.util.List;
 
 @Entity
@@ -17,7 +19,7 @@ public class PesawatModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Size(max = 20)
+    @Max(20)
     private Long id;
 
     @NotNull
@@ -36,7 +38,8 @@ public class PesawatModel {
     private String tempatDibuat;
 
     @NotNull
-    @DateTimeFormat(pattern = "dd-mm-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.DATE)
     @Column(name = "tanggal_dibuat", nullable = false)
     private Date tanggalDibuat;
 

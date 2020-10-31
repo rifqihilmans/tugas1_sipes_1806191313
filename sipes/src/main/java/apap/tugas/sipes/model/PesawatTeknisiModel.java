@@ -5,6 +5,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Size;
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class PesawatTeknisiModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Size(max = 20)
+    @Max(20)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

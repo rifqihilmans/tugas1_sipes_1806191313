@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -21,9 +22,9 @@ public class TeknisiServiceImpl implements TeknisiService{
     }
 
     @Override
-    public TeknisiModel getTeknisiById(Long id) {
+    public Optional<TeknisiModel> getTeknisiById(Long id) {
         if(teknisiDb.findById(id).isPresent()){
-            return teknisiDb.findById(id).get();
+            return teknisiDb.findById(id);
         }else{
             return null;
         }

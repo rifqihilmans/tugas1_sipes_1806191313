@@ -1,6 +1,7 @@
 package apap.tugas.sipes.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
@@ -11,7 +12,7 @@ public class TipeModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Size(max = 20)
+    @Max(20)
     private Long id;
 
     @NotNull

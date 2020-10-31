@@ -4,6 +4,7 @@ import apap.tugas.sipes.model.PesawatModel;
 import apap.tugas.sipes.model.PesawatTeknisiModel;
 import apap.tugas.sipes.model.TeknisiModel;
 import apap.tugas.sipes.model.TipeModel;
+import apap.tugas.sipes.repository.PesawatTeknisiDb;
 import apap.tugas.sipes.service.PesawatService;
 import apap.tugas.sipes.service.TeknisiService;
 import apap.tugas.sipes.service.TipeService;
@@ -28,6 +29,9 @@ public class PesawatController {
 
     @Autowired
     private TipeService tipeService;
+
+    @Autowired
+    private PesawatTeknisiDb pesawatTeknisiDb;
 
     @GetMapping("/")
     private String home(){
@@ -67,5 +71,25 @@ public class PesawatController {
         model.addAttribute("pesawat", pesawat);
         return "form-add-pesawat";
     }
-    
+
+    @RequestMapping(value = "/pesawat/tambah", params = "save", method = RequestMethod.POST)
+    private String addPesawatSubmit(@ModelAttribute PesawatModel pesawat, Model model){
+//        for (PesawatTeknisiModel pesawatTeknisi : pesawat.getListPesawatTeknisi()){
+//            pesawatTeknisi.setPesawat(pesawat);
+//            pesawatService.addPesawat(pesawat);
+//        }
+        PesawatModel newPesawat = new PesawatModel();
+        List<PesawatTeknisiModel> listPesawatTeknisi = pesawat.getListPesawatTeknisi();
+        pesawat.setListPesawatTeknisi(null);
+
+        for(PesawatTeknisiModel pesawatTeknisi : listPesawatTeknisi){
+            PesawatTeknisiModel newPesawatTeknisi = new PesawatTeknisiModel();
+            newPesawatTeknisi.setPesawat(newPesawat);
+            newPesawatTeknisi.setTeknisi(teknisiService.getTeknisiById(pesawatTeknisi.getTeknisi().getId()).get());
+            pesawat.setNomorSeri(pesawatService.setNoSeriPesawat(pesawat));
+            pesawatService.addPesawat(pesawat);
+        }
+        model.addAttribute("pesawat", pesawat);
+        return "add-pesawat";
+    }
 }

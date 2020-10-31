@@ -22,20 +22,20 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="pesawat, iterationStatus : ${listHotel}">
+        <tr th:each="pesawat, iterationStatus : ${listPesawat}">
             <td th:text="${iterationStatus.count}"></td>
-            <td th:text="${pesawat.id}"></td>
-            <td th:text="${pesawat.nomor_seri}"></td>
-            <td th:text="${pesawat.jenis_pesawat}"></td>
-            <td th:text="${hotel.maskapai}"></td>
+            <td th:text="${pesawat.nomorSeri}"></td>
+            <td th:text="${pesawat.tipe.getNama()}"></td>
+            <td th:text="${pesawat.jenisPesawat}"></td>
+            <td th:text="${pesawat.maskapai}"></td>
             <td>
                 <a th:href="@{/pesawat/}+${pesawat.id}"><button type="submit" class="btn btn-info">Lihat</button</a>
             </td>
             <td>
-                <a th:href="@{/pesawat/ubah/}+${hotel.id}"><button type="submit" class="btn btn-warning">Ubah</button</a>
+                <a th:href="@{/pesawat/ubah/}+${pesawat.id}"><button type="submit" class="btn btn-warning">Ubah</button</a>
             </td>
             <td>
-                <a th:href="@{/pesawat/hapus/}+${hotel.id}"><button type="submit" class="btn btn-danger">Delete</button</a>
+                <a th:href="@{/pesawat/hapus/}+${pesawat.id}"><button type="submit" class="btn btn-danger">Delete</button</a>
             </td>
         </tr>
         </tbody>
