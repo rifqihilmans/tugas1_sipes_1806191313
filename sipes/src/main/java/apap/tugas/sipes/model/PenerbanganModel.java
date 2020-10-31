@@ -10,6 +10,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 @Table(name = "penerbangan")
@@ -32,7 +33,7 @@ public class PenerbanganModel implements Serializable {
 
     @NotNull
     @Column(name = "waktu_berangkat", nullable = false)
-    private Timestamp waktuBerangkat;
+    private Date waktuBerangkat;
 
     @NotNull
     @Size(max = 255)
@@ -70,11 +71,11 @@ public class PenerbanganModel implements Serializable {
         this.kodeBandaraTujuan = kodeBandaraTujuan;
     }
 
-    public Timestamp getWaktuBerangkat() {
+    public Date getWaktuBerangkat() {
         return waktuBerangkat;
     }
 
-    public void setWaktuBerangkat(Timestamp waktuBerangkat) {
+    public void setWaktuBerangkat(Date waktuBerangkat) {
         this.waktuBerangkat = waktuBerangkat;
     }
 

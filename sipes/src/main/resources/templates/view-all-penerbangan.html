@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Daftar Penerbangan</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container-fluid">
+    <h2>Daftar Penerbangan</h2>
+    <table class="table">
+        <thead>
+        <a th:href="@{/penerbangan/tambah}"><button type="submit" class="btn btn-primary">+ Tambah Penerbangan</button></a>
+        <tr>
+            <th>No</th>
+            <th>Kode Penerbangan</th>
+            <th>Bandara Asal</th>
+            <th>Bandara Tujuan</th>
+            <th>Waktu Berangkat</th>
+            <th>Aksi</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="penerbangan, iterationStatus : ${listPenerbangan}">
+            <td th:text="${iterationStatus.count}"></td>
+            <td th:text="${penerbangan.nomorPenerbangan}"></td>
+            <td th:text="${penerbangan.kodeBandaraAsal}"></td>
+            <td th:text="${penerbangan.kodeBandaraTujuan}"></td>
+            <td th:text="${penerbangan.waktuBerangkat}"></td>
+            <td>
+                <a th:href="@{/penerbangan/}+${penerbangan.id}"><button type="submit" class="btn btn-info">Lihat</button</a>
+            </td>
+            <td>
+                <a th:href="@{/penerbangan/ubah/}+${penerbangan.id}"><button type="submit" class="btn btn-warning">Ubah</button</a>
+            </td>
+            <td>
+                <a th:href="@{/penerbangan/hapus/}+${penerbangan.id}"><button type="submit" class="btn btn-danger">Delete</button</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
