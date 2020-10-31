@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tambah Penerbangan</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+<div class="container-fluid">
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <h2>Form Tambah Penerbangan</h2>
+    <form th:action="@{/penerbangan/tambah}" th:object="${penerbangan}" method="POST">
+        <input type="hidden" th:field="${id}"/>
+        <div class="form-group row">
+            <label for="inputKodePenerbangan" class="col-sm-2 col-form-label">Kode Penerbangan</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputKodePenerbangan" placeholder="Masukkan kode penerbangan">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputKodeAsal" class="col-sm-2 col-form-label">Kode Bandara Asal</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputKodeAsal" placeholder="Masukkan kode bandara asal">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputKodeTujuan" class="col-sm-2 col-form-label">Kode Bandara Tujuan</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputKodeTujuan" placeholder="Masukkan kode bandara tujuan">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputWaktu" class="col-sm-2 col-form-label">Waktu Berangkat</label>
+            <div class="col-sm-10">
+                <input type="date" class="form-control" id="inputWaktu" placeholder="dd/mm/yyyy">
+            </div>
+        </div>
+        <div class="col-sm-5">
+            <button type="submit" class="btn btn-primary" style="text-align: center">Simpan</button>
+        </div>
+        <div class="col-sm-5">
+            <button type="submit" class="btn btn-primary" style="text-align: center">Batal</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

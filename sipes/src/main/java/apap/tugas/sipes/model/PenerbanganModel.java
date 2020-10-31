@@ -3,6 +3,7 @@ package apap.tugas.sipes.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
@@ -32,6 +33,8 @@ public class PenerbanganModel implements Serializable {
     private String kodeBandaraTujuan;
 
     @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.DATE)
     @Column(name = "waktu_berangkat", nullable = false)
     private Date waktuBerangkat;
 
@@ -41,8 +44,8 @@ public class PenerbanganModel implements Serializable {
     private String nomorPenerbangan;
 
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "id_pesawat", referencedColumnName = "id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_pesawat", referencedColumnName = "id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private PesawatModel pesawat;
