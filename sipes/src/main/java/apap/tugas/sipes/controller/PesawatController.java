@@ -78,10 +78,6 @@ public class PesawatController {
 
     @RequestMapping(value = "/pesawat/tambah", params = "save", method = RequestMethod.POST)
     private String addPesawatSubmit(@ModelAttribute PesawatModel pesawat, Model model){
-//        for (PesawatTeknisiModel pesawatTeknisi : pesawat.getListPesawatTeknisi()){
-//            pesawatTeknisi.setPesawat(pesawat);
-//            pesawatService.addPesawat(pesawat);
-//        }
         PesawatModel newPesawat = new PesawatModel();
         List<PesawatTeknisiModel> listPesawatTeknisi = pesawat.getListPesawatTeknisi();
         pesawat.setListPesawatTeknisi(null);

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail Pesawat</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container-fluid">
+    <div class="col-md-6 offset-md-3">
+        <h2 style="text-align: center">Detail Penerbangan</h2>
+        <br>
+        <div class="row mb-2" style="width:60%; margin: auto; text-align: start">
+            <div class="col-md-6" style="font-weight: bold">Kode Penerbangan</div>
+            <div class="col-md-5 ml-auto" th:text="${penerbangan.nomorPenerbangan}"></div>
+        </div>
+        <div class="row mb-2" style="width:60%; margin: auto; text-align: start">
+            <div class="col-md-6" style="font-weight: bold">Kode Bandara Asal</div>
+            <div class="col-md-5 ml-auto" th:text="${penerbangan.kodeBandaraAsal}"></div>
+        </div>
+        <div class="row mb-2" style="width:60%; margin: auto; text-align: start">
+            <div class="col-md-6" style="font-weight: bold">Kode Bandara Tujuan</div>
+            <div class="col-md-5 ml-auto" th:text="${penerbangan.kodeBandaraTujuan}"></div>
+        </div>
+        <div class="row mb-2" style="width:60%; margin: auto; text-align: start">
+            <div class="col-md-6" style="font-weight: bold">Waktu Berangkat</div>
+            <div class="col-md-5 ml-auto" th:text="${penerbangan.waktuBerangkat}"></div>
+        </div>
+        <div class="row mb-2" style="width:60%; margin: auto; text-align: start">
+            <div class="col-md-6" style="font-weight: bold">Nomor Seri</div>
+            <div class="col-md-5 ml-auto" th:if="${penerbangan.pesawat}" th:text="${penerbangan.pesawat.nomorSeri}"></div>
+            <div class="col-md-5 ml-auto" th:unless="${penerbangan.pesawat}">Belum diassign pesawat</div>
+        </div>
+        <br>
+    </div>
+</div>
+</body>
+</html>

@@ -60,4 +60,11 @@ public class PenerbanganController {
         model.addAttribute("penerbangan", newPenerbangan);
         return "update-penerbangan";
     }
+
+    @RequestMapping(value = "/penerbangan/{id}", method = RequestMethod.GET)
+    private String viewDetailPenerbangan(@PathVariable Long id, Model model){
+        PenerbanganModel penerbangan = penerbanganService.getPenerbanganById(id);
+        model.addAttribute("penerbangan", penerbangan);
+        return "view-penerbangan";
+    }
 }
