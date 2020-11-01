@@ -20,7 +20,7 @@ public class PenerbanganController {
 
     @GetMapping("/penerbangan")
     private String daftarPenerbangan(Model model){
-        List<PenerbanganModel> listPenerbangan = penerbanganService.getPenerbanganList();
+        List<PenerbanganModel> listPenerbangan = penerbanganService.getAll();
         model.addAttribute("listPenerbangan", listPenerbangan);
         return "view-all-penerbangan";
     }

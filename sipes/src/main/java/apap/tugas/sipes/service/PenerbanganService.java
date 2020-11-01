@@ -9,9 +9,6 @@ public interface PenerbanganService {
     //Method untuk menambah penerbangan
     void addPenerbangan(PenerbanganModel penerbangan);
 
-    //Method untuk mendapatkan daftar penerbangan yang tersimpan
-    List<PenerbanganModel> getPenerbanganList();
-
     //Method untuk mendapatkan daftar penerbangan berdasarkan id
     PenerbanganModel getPenerbanganById(Long id);
 

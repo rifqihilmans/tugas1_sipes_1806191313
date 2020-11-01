@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Filter Pesawat</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container-fluid">
+    <div class="card">
+        <div class="col-md-6 offset-md-3">
+            <h5 class="card-header">Cari Pesawat Tua</h5>
+            <div class="card-body">
+                <form th:action="@{/pesawat/filter}" method="GET">
+                    <div class="form-group row">
+                        <label  class="col-sm-2 col-form-label">Penerbangan</label>
+                        <div class="col-sm-10">
+                            <select name="idPenerbangan" class="form-control">
+                                <option th:each="penerbangan : *{listPenerbangan}" th:value="${penerbangan.id}" th:text="${penerbangan.nomorPenerbangan}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Tipe</label>
+                        <div class="col-sm-10">
+                            <select name="idTipe" class="form-control">
+                                <option th:each="tipe : ${listTipe}" th:value="${tipe.id}" th:text="${tipe.nama}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Teknisi</label>
+                        <div class="col-sm-10">
+                            <select name="idTeknisi" class="form-control">
+                                <option th:each="teknisi : ${listTeknisi}" th:value="${teknisi.id}" th:text="${teknisi.nama}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="text-align: center">Cari</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>No</th>
+            <th>Nomor Seri</th>
+            <th>Jenis</th>
+            <th>Tipe</th>
+            <th>Maskapai</th>
+            <th>Nomor Penerbangan</th>
+            <th>Teknisi</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="pesawat, iterationStatus : ${listPesawat}">
+            <td th:text="${iterationStatus.count}"></td>
+            <td th:text="${pesawat.nomorSeri}"></td>
+            <td th:text="${pesawat.jenisPesawat}"></td>
+            <td th:text="${pesawat.tipe}"></td>
+            <td th:text="${pesawat.maskapai}"></td>
+            <td th:text="${penerbangan.nomorPenerbangan}"></td>
+            <td th:text="${teknisi.nama}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

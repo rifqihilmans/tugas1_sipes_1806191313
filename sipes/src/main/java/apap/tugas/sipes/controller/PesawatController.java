@@ -150,6 +150,7 @@ public class PesawatController {
         model.addAttribute("pesawat", targetPesawat);
         model.addAttribute("listTeknisi", listTeknisi);
         model.addAttribute("listPenerbangan", adaPenerbangan);
+        model.addAttribute("listPenerbangan", listPenerbangan);
         return "view-pesawat";
     }
 
@@ -176,5 +177,32 @@ public class PesawatController {
         model.addAttribute("listPesawat", listPesawatBaru);
         model.addAttribute("listTahun", listTahun);
         return "cari-pesawat-tua";
+    }
+
+    @GetMapping(value = "pesawat/filter")
+    private String filterPesawat(@RequestParam(value = "idPenerbangan") Long idPenerbangan, @RequestParam(value = "idTipe") Long idTipe, @RequestParam(value = "idTeknisi") Long idTeknisi, Model model){
+        List<PenerbanganModel> listPenerbangan = penerbanganService.getAll();
+        List<TipeModel> listTipe = tipeService.getAll();
+        List<TeknisiModel> listTeknisi = teknisiService.getAll();
+        List<PesawatModel> listPesawat = pesawatService.getPesawatList();
+        List<PesawatModel> penerbanganList = new ArrayList<>();
+        for (PenerbanganModel p : listPenerbangan){
+            penerbanganList.add(p.getPesawat());
+        }
+
+        PenerbanganModel penerbangan = penerbanganService.getPenerbanganById(idPenerbangan);
+        TipeModel tipe = tipeService.getTipeById(idTipe);
+        TeknisiModel teknisi = teknisiService.getTeknisiById(idTeknisi).get();
+
+        List<PesawatModel> newPesawat = new ArrayList<>();
+        for(PesawatModel pswt : listPesawat){
+            List<PenerbanganModel> ppm = pswt.getListPenerbangan();
+            TipeModel ptm = pswt.getTipe();
+            List<TeknisiModel> listTeknisiBaru = pswt.getListTeknisi();
+            if(ppm.contains(penerbangan) && ptm.getId() == tipe.getId() && listTeknisiBaru.contains(teknisi)){
+                newPesawat.add(pswt);
+            }
+        }
+        return "filter-pesawat";
     }
 }
