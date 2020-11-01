@@ -9,9 +9,9 @@
 <body>
 <div class="container-fluid">
     <nav th:replace="fragments/fragment :: navbar"></nav>
-    <h2>Daftar Pesawat</h2>
+    <h2 style="text-align: center; display: block">Daftar Pesawat</h2>
     <table class="table">
-        <thead>
+        <thead class="thead-dark">
         <a th:href="@{/pesawat/tambah}"><button type="submit" class="btn btn-primary">+ Tambah Pesawat</button></a>
         <tr>
             <th>No</th>
@@ -19,7 +19,9 @@
             <th>Tipe Pesawat</th>
             <th>Jenis Pesawat</th>
             <th>Maskapai</th>
+            <th></th>
             <th>Aksi</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>

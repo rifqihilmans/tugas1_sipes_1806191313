@@ -7,8 +7,8 @@
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
 <div class="container-fluid">
-    <nav th:replace="fragments/fragment :: navbar"></nav>
     <h2 style="text-align: center" th:text="'Penerbangan ' + ${penerbangan.nomorPenerbangan} + ' berhasil dihapus'"></h2>
     <a style="text-align: center; display: block" href="/penerbangan">Kembali ke Daftar Penerbangan</a>
 </div>
