@@ -67,11 +67,13 @@ public class PesawatController {
 
     @RequestMapping(value = "/pesawat/tambah", params = "addTeknisi", method = RequestMethod.POST)
     private String addRowTeknisi(@ModelAttribute PesawatModel pesawat, Model model){
-        if(pesawat.getListPesawatTeknisi() == null){
-            pesawat.setListPesawatTeknisi(new ArrayList<PesawatTeknisiModel>());
+        if(pesawat.getListTeknisi() == null){
+            pesawat.setListTeknisi(new ArrayList<TeknisiModel>());
         }
-        pesawat.getListPesawatTeknisi().add(new PesawatTeknisiModel());
+        pesawat.getListTeknisi().add(new TeknisiModel());
         List<TeknisiModel> listTeknisi = teknisiService.getAll();
+        List<TipeModel> listTipe = tipeService.getAll();
+        model.addAttribute("listTipe", listTipe);
         model.addAttribute("listTeknisi", listTeknisi);
         model.addAttribute("pesawat", pesawat);
         return "form-add-pesawat";
