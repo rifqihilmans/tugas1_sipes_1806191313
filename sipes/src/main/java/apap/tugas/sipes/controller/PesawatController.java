@@ -199,7 +199,8 @@ public class PesawatController {
             List<PenerbanganModel> penerbanganLists = pswt.getListPenerbangan();
             TipeModel tipePesawat = pswt.getTipe();
             List<TeknisiModel> listTeknisiBaru = pswt.getListTeknisi();
-            if(penerbanganLists.contains(penerbangan) && tipePesawat.getId() == tipe.getId() && listTeknisiBaru.contains(teknisi)){
+            if(penerbanganLists.contains(penerbangan) && tipePesawat.getId() == tipe.getId() && listTeknisiBaru.contains(teknisi)
+                ||penerbanganLists.contains(penerbangan) && tipePesawat.getId() == tipe.getId() || listTeknisiBaru.contains(teknisi) && tipePesawat.getId() == tipe.getId()){
                 newPesawat.add(pswt);
             }
         }
