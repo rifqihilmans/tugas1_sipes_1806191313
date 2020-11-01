@@ -196,13 +196,27 @@ public class PesawatController {
 
         List<PesawatModel> newPesawat = new ArrayList<>();
         for(PesawatModel pswt : listPesawat){
-            List<PenerbanganModel> ppm = pswt.getListPenerbangan();
-            TipeModel ptm = pswt.getTipe();
+            List<PenerbanganModel> penerbanganLists = pswt.getListPenerbangan();
+            TipeModel tipePesawat = pswt.getTipe();
             List<TeknisiModel> listTeknisiBaru = pswt.getListTeknisi();
-            if(ppm.contains(penerbangan) && ptm.getId() == tipe.getId() && listTeknisiBaru.contains(teknisi)){
+            if(penerbanganLists.contains(penerbangan) && tipePesawat.getId() == tipe.getId() && listTeknisiBaru.contains(teknisi)){
                 newPesawat.add(pswt);
             }
         }
         return "filter-pesawat";
+    }
+
+    @RequestMapping(value = "/pesawat/jumlah-teknisi", method = RequestMethod.GET)
+    private String jumlahTeknisi(Model model){
+        List<PesawatModel> listPesawat = pesawatService.getPesawatList();
+        List<Integer> totalTeknisi = new ArrayList<>();
+
+        for(PesawatModel pesawat : listPesawat){
+            totalTeknisi.add(pesawat.getListTeknisi().size());
+        }
+
+        model.addAttribute("listPesawat", listPesawat);
+        model.addAttribute("totalTeknisi", totalTeknisi);
+        return "jumlah-teknisi";
     }
 }
