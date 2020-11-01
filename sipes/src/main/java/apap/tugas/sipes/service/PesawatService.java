@@ -24,5 +24,4 @@ public interface PesawatService {
 
     String setNoSeriPesawat(PesawatModel pesawat);
 
-//    List<PesawatModel> getPesawatTua(PesawatModel pesawat);
 }

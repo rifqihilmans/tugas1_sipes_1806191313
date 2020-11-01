@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Daftar Pesawat</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+<div class="container-fluid">
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <h2 style="text-align: center">Daftar Pesawat Tua</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nomor Seri</th>
+                <th>Jenis</th>
+                <th>Tipe</th>
+                <th>Usia</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="pesawat, iterationStatus : ${listPesawat}">
+                <td th:text="${iterationStatus.count}"></td>
+                <td th:text="${pesawat.nomorSeri}"></td>
+                <td th:text="${pesawat.jenisPesawat}"></td>
+                <td th:text="${pesawat.tipe.nama}"></td>
+                <td th:text="${listTahun[iterationStatus.index]} + ' tahun'"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

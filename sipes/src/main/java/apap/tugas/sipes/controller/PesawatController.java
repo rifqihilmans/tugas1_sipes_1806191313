@@ -9,6 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -147,5 +151,30 @@ public class PesawatController {
         model.addAttribute("listTeknisi", listTeknisi);
         model.addAttribute("listPenerbangan", adaPenerbangan);
         return "view-pesawat";
+    }
+
+    @RequestMapping(value = "/pesawat/pesawat-tua", method = RequestMethod.GET)
+    private String cariPesawatTua(Model model){
+        PesawatModel pesawat = new PesawatModel();
+        List<PesawatModel> listPesawat = pesawatService.getPesawatList();
+        List<PesawatModel> listPesawatBaru = new ArrayList<>();
+        List<Integer> listTahun = new ArrayList<>();
+
+        for (PesawatModel pswt : listPesawat){
+            Format year = new SimpleDateFormat("yyyy");
+            String years = year.format(pswt.getTanggalDibuat());
+            int tahun = Integer.parseInt(years);
+            DateTimeFormatter yearFormat = DateTimeFormatter.ofPattern("yyyy");
+            LocalDate date = LocalDate.now();
+            int now = Integer.parseInt(yearFormat.format(date));
+            int umur = now - tahun;
+            if (umur >= 10){
+                listPesawatBaru.add(pswt);
+                listTahun.add(umur);
+            }
+        }
+        model.addAttribute("listPesawat", listPesawatBaru);
+        model.addAttribute("listTahun", listTahun);
+        return "cari-pesawat-tua";
     }
 }
