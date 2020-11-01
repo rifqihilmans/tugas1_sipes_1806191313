@@ -9,16 +9,33 @@
 <body>
 <nav th:replace="fragments/fragment :: navbar"></nav>
 <div class="container-fluid">
-    <div class="col-sm-4"></div>
-    <div class="col-sm-4">
+    <div class="col-md-6 offset-md-3">
         <h2 style="text-align: center">Detail Pesawat</h2>
         <br>
-        <h5 th:text="'Nomor Seri Pesawat     ' + ${pesawat.nomorSeri}"></h5>
-        <h5 th:text="'Jenis Pesawat          ' + ${pesawat.jenisPesawat}"></h5>
-        <h5 th:text="'Nomor Tipe Pesawat     ' + ${pesawat.tipe.nama}"></h5>
-        <h5 th:text="'Maskapai               ' + ${pesawat.maskapai}"></h5>
-        <h5 th:text="'Tempat Dibuat          ' + ${pesawat.tempatDibuat}"></h5>
-        <h5 th:text="'Tanggal Dibuat         ' + ${pesawat.tanggalDibuat}"></h5>
+        <div class="row mb-2" style="width:60%; margin: auto; text-align: start">
+            <div class="col-md-6" style="font-weight: bold">Nomor Seri Pesawat</div>
+            <div class="col-md-5 ml-auto" th:text="${pesawat.nomorSeri}"></div>
+        </div>
+        <div class="row mb-2" style="width:60%; margin: auto; text-align: start">
+            <div class="col-md-6" style="font-weight: bold">Jenis Pesawat</div>
+            <div class="col-md-5 ml-auto" th:text="${pesawat.jenisPesawat}"></div>
+        </div>
+        <div class="row mb-2" style="width:60%; margin: auto; text-align: start">
+            <div class="col-md-6" style="font-weight: bold">Nama Tipe Pesawat</div>
+            <div class="col-md-5 ml-auto" th:text="${pesawat.tipe.nama}"></div>
+        </div>
+        <div class="row mb-2" style="width:60%; margin: auto; text-align: start">
+            <div class="col-md-6" style="font-weight: bold">Maskapai</div>
+            <div class="col-md-5 ml-auto" th:text="${pesawat.maskapai}"></div>
+        </div>
+        <div class="row mb-2" style="width:60%; margin: auto; text-align: start">
+            <div class="col-md-6" style="font-weight: bold">Tempat Dibuat</div>
+            <div class="col-md-5 ml-auto" th:text="${pesawat.tempatDibuat}"></div>
+        </div>
+        <div class="row mb-2" style="width:60%; margin: auto; text-align: start">
+            <div class="col-md-6" style="font-weight: bold">Tanggal Dibuat</div>
+            <div class="col-md-5 ml-auto" th:text="${pesawat.tanggalDibuat}"></div>
+        </div>
         <br>
         <h4 style="text-align: center" th:text="'Daftar Teknisi Pesawat'"></h4>
         <table>
@@ -30,10 +47,10 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="pesawatTeknisi, iterationStatus : ${pesawat.listPesawatTeknisi}">
+            <tr th:each="teknisi, iterationStatus : ${pesawat.listTeknisi}">
                 <td th:text="${iterationStatus.count}"></td>
-                <td th:text="${pesawat.teknisi.nama}"></td>
-                <td th:text="${pesawat.teknisi.nomorTelepon}"></td>
+                <td th:text="${teknisi.nama}"></td>
+                <td th:text="${teknisi.nomorTelepon}"></td>
             </tr>
             </tbody>
         </table>

@@ -6,4 +6,6 @@ public interface PesawatTeknisiService {
 
     //Method untuk mendapatkan teknisi pesawat berdasarkan id
     PesawatTeknisiModel getPesawatTeknisiById(Long id);
+
+    void add(PesawatTeknisiModel pesawatTeknisi);
 }

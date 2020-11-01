@@ -27,6 +27,9 @@ public class TeknisiModel {
     @OneToMany(mappedBy = "teknisi", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<PesawatTeknisiModel> listPesawatTeknisi;
 
+    @ManyToMany(mappedBy = "listTeknisi")
+    private List<PesawatModel> listPesawat;
+
     public Long getId() {
         return id;
     }
@@ -57,5 +60,13 @@ public class TeknisiModel {
 
     public void setListPesawatTeknisi(List<PesawatTeknisiModel> listPesawatTeknisi) {
         this.listPesawatTeknisi = listPesawatTeknisi;
+    }
+
+    public List<PesawatModel> getListPesawat() {
+        return listPesawat;
+    }
+
+    public void setListPesawat(List<PesawatModel> listPesawat) {
+        this.listPesawat = listPesawat;
     }
 }

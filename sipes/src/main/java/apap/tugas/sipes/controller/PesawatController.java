@@ -52,10 +52,10 @@ public class PesawatController {
     @RequestMapping(value="/pesawat/tambah", method = RequestMethod.GET)
     private String addPesawatFormPage(Model model){
         PesawatModel newPesawat = new PesawatModel();
-        PesawatTeknisiModel pesawatTeknisi = new PesawatTeknisiModel();
-        List<PesawatTeknisiModel> listPesawatTeknisi = new ArrayList<>();
-        listPesawatTeknisi.add(pesawatTeknisi);
-        newPesawat.setListPesawatTeknisi(listPesawatTeknisi);
+//        PesawatTeknisiModel pesawatTeknisi = new PesawatTeknisiModel();
+        List<TeknisiModel> listPesawatTeknisi = new ArrayList<>();
+        listPesawatTeknisi.add(new TeknisiModel());
+        newPesawat.setListTeknisi(listPesawatTeknisi);
         List<TeknisiModel> listTeknisi = teknisiService.getAll();
         List<TipeModel> listTipe = tipeService.getAll();
         model.addAttribute("listTipe", listTipe);
@@ -78,17 +78,19 @@ public class PesawatController {
 
     @RequestMapping(value = "/pesawat/tambah", params = "save", method = RequestMethod.POST)
     private String addPesawatSubmit(@ModelAttribute PesawatModel pesawat, Model model){
-        PesawatModel newPesawat = new PesawatModel();
-        List<PesawatTeknisiModel> listPesawatTeknisi = pesawat.getListPesawatTeknisi();
+//        PesawatModel newPesawat = new PesawatModel();
+        List<TeknisiModel> listTeknisi = new ArrayList<>();
         pesawat.setListPesawatTeknisi(null);
-
-        for(PesawatTeknisiModel pesawatTeknisi : listPesawatTeknisi){
+        pesawat.setNomorSeri(pesawatService.setNoSeriPesawat(pesawat));
+        pesawatService.addPesawat(pesawat);
+        for(TeknisiModel teknisi : pesawat.getListTeknisi()){
             PesawatTeknisiModel newPesawatTeknisi = new PesawatTeknisiModel();
-            newPesawatTeknisi.setPesawat(newPesawat);
-            newPesawatTeknisi.setTeknisi(teknisiService.getTeknisiById(pesawatTeknisi.getTeknisi().getId()).get());
-            pesawat.setNomorSeri(pesawatService.setNoSeriPesawat(pesawat));
-            pesawatService.addPesawat(pesawat);
+            newPesawatTeknisi.setPesawat(pesawat);
+            listTeknisi.add(teknisiService.getTeknisiById(teknisi.getId()).get());
+            newPesawatTeknisi.setTeknisi(teknisiService.getTeknisiById(teknisi.getId()).get());
+            pesawatTeknisiService.add(newPesawatTeknisi);
         }
+        pesawat.setListTeknisi(listTeknisi);
         model.addAttribute("pesawat", pesawat);
         return "add-pesawat";
     }
@@ -125,4 +127,11 @@ public class PesawatController {
         model.addAttribute("pesawat", pesawat);
         return "delete-pesawat";
     }
+
+//    @RequestMapping(value = "/pesawat/pesawat-tua", method = RequestMethod.GET)
+//    private String cariPesawatTua(Model model){
+//        List<PesawatModel> listPesawat = pesawatService.getPesawatList();
+//        pesawatService.getPesawatTua(listPesawat)
+//        return "view-pesawat-tua";
+//    }
 }

@@ -23,4 +23,6 @@ public interface PesawatService {
     void deletePesawat(PesawatModel pesawat);
 
     String setNoSeriPesawat(PesawatModel pesawat);
+
+//    List<PesawatModel> getPesawatTua(PesawatModel pesawat);
 }

@@ -11,7 +11,7 @@
     <nav th:replace="fragments/fragment :: navbar"></nav>
     <h2>Form Tambah Pesawat</h2>
     <form th:action="@{/pesawat/tambah}" th:object="${pesawat}" method="POST">
-        <input type="hidden" th:field="${pesawat}"/>
+        <input type="hidden" th:field="*{id}"/>
         <div class="form-group row">
             <label for="inputMaskapai" class="col-sm-2 col-form-label">Maskapai</label>
             <div class="col-sm-10">
@@ -43,15 +43,15 @@
             <label for="inputTipe" class="col-sm-2 col-form-label">Tipe</label>
             <div class="col-sm-10">
                 <select name="tipe" id="inputTipe" class="form-control" th:field="*{tipe}">
-                <option th:each="tipe : ${listTipe}" th:value="${tipe.id}" th:text="${tipe.nama}"></option>
+                    <option th:each="tipe : ${listTipe}" th:value="${tipe.id}" th:text="${tipe.nama}"></option>
                 </select>
             </div>
         </div>
 
-        <div class="form-group row" th:each="pesawatTeknisi, iterationStatus : *{listPesawatTeknisi}">
+        <div class="form-group row" th:each="teknisi, iterationStatus : *{listTeknisi}">
             <label for="inputTeknisi" class="col-sm-2 col-form-label">Teknisi</label>
             <div class="col-sm-10">
-                <select name="teknisi" id="inputTeknisi" class="form-control" th:field="*{listPesawatTeknisi[__${iterationStatus.index}__].teknisi.id}">
+                <select name="teknisi" id="inputTeknisi" class="form-control" th:field="*{listTeknisi[__${iterationStatus.index}__].id}">
                     <option th:each="teknisi : ${listTeknisi}" th:value="${teknisi.id}" th:text="${teknisi.nama}"></option>
                 </select>
             </div>
@@ -63,7 +63,7 @@
             <button type="submit" class="btn btn-primary" name="save" style="text-align: center">Simpan</button>
         </div>
         <div class="col-sm-5">
-            <button type="submit" class="btn btn-primary" style="text-align: center">Batal</button>
+            <a th:href="@{/pesawat}"><button type="submit" class="btn btn-light">Batal</button></a>
         </div>
     </form>
 </div>

@@ -61,6 +61,11 @@ public class PesawatModel {
     @OneToMany(mappedBy = "pesawat", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<PesawatTeknisiModel> listPesawatTeknisi;
 
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "id_teknisi", referencedColumnName = "id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private List<TeknisiModel> listTeknisi;
 
     public Long getId() {
         return id;
@@ -132,5 +137,13 @@ public class PesawatModel {
 
     public void setTipe(TipeModel tipe) {
         this.tipe = tipe;
+    }
+
+    public List<TeknisiModel> getListTeknisi() {
+        return listTeknisi;
+    }
+
+    public void setListTeknisi(List<TeknisiModel> listTeknisi) {
+        this.listTeknisi = listTeknisi;
     }
 }

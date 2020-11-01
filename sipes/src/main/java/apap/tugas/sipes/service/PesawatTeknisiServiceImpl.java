@@ -22,4 +22,9 @@ public class PesawatTeknisiServiceImpl implements PesawatTeknisiService{
             return null;
         }
     }
+
+    @Override
+    public void add(PesawatTeknisiModel pesawatTeknisi) {
+        pesawatTeknisiDb.save(pesawatTeknisi);
+    }
 }

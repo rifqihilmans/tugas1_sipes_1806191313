@@ -12,6 +12,9 @@ import javax.transaction.Transactional;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -97,4 +100,17 @@ public class PesawatServiceImpl implements PesawatService{
         }
         return seri = jenis + tipe + reverse + tahun4 + generatedA + generatedB;
     }
+
+//    @Override
+//    public List<PesawatModel> getPesawatTua(PesawatModel pesawat) {
+//        Format year = new SimpleDateFormat("yyyy");
+//        String years = year.format(pesawat.getTanggalDibuat());
+//        int tahun = Integer.parseInt(years);
+//        DateTimeFormatter yearFormat = DateTimeFormatter.ofPattern("yyyy");
+//        LocalDate date = LocalDate.now();
+//        int now = Integer.parseInt(yearFormat.format(date));
+//        if (tahun>now && tahun >= 10){
+//            pesawatDb.save(pesawat);
+//        }
+//    }
 }
