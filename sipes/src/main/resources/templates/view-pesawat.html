@@ -54,7 +54,7 @@
                     <label for="cariNomor">Tambah Penerbangan</label>
                 </div>
                 <div class="form-group mx-sm-3 mb-2">
-                    <select id="cariNomor" class="form-control" th:field="*{listPenerbangan[0].id}">
+                    <select id="cariNomor" class="form-control" th:field="*{id}">
                         <option th:each="penerbangan : ${listPenerbangan}" th:text="${penerbangan.nomorPenerbangan}" th:value="${penerbangan.id}"></option>
                     </select>
                 </div>

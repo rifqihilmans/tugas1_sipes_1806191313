@@ -149,6 +149,7 @@ public class PesawatController {
                 adaPenerbangan.add(jadwal);
             }
         }
+
         model.addAttribute("pesawat", targetPesawat);
         model.addAttribute("listTeknisi", listTeknisi);
         model.addAttribute("listPenerbangan", adaPenerbangan);
