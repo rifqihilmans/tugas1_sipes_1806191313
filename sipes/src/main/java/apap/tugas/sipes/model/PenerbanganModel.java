@@ -45,7 +45,7 @@ public class PenerbanganModel implements Serializable {
 
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_pesawat", referencedColumnName = "id")
+    @JoinColumn(name = "id_pesawat", referencedColumnName = "id", nullable = true)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private PesawatModel pesawat;

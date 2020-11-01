@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,4 +38,13 @@ public class PenerbanganController {
         model.addAttribute("penerbangan", penerbangan);
         return "add-penerbangan";
     }
+
+    @RequestMapping(value = "/penerbangan/hapus/{id}", method = RequestMethod.GET)
+    private String deletePesawat(@PathVariable Long id, Model model){
+        PenerbanganModel penerbangan = penerbanganService.getPenerbanganById(id);
+        penerbanganService.deletePenerbangan(penerbangan);
+        model.addAttribute("penerbangan", penerbangan);
+        return "delete-penerbangan";
+    }
+
 }
