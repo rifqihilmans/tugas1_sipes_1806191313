@@ -1,14 +1,8 @@
 package apap.tugas.sipes.controller;
 
-import apap.tugas.sipes.model.PesawatModel;
-import apap.tugas.sipes.model.PesawatTeknisiModel;
-import apap.tugas.sipes.model.TeknisiModel;
-import apap.tugas.sipes.model.TipeModel;
+import apap.tugas.sipes.model.*;
 import apap.tugas.sipes.repository.PesawatTeknisiDb;
-import apap.tugas.sipes.service.PesawatService;
-import apap.tugas.sipes.service.PesawatTeknisiService;
-import apap.tugas.sipes.service.TeknisiService;
-import apap.tugas.sipes.service.TipeService;
+import apap.tugas.sipes.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -36,6 +30,9 @@ public class PesawatController {
 
     @Autowired
     private PesawatTeknisiService pesawatTeknisiService;
+
+    @Autowired
+    private PenerbanganService penerbanganService;
 
     @GetMapping("/")
     private String home(){
@@ -128,10 +125,27 @@ public class PesawatController {
         return "delete-pesawat";
     }
 
-//    @RequestMapping(value = "/pesawat/pesawat-tua", method = RequestMethod.GET)
-//    private String cariPesawatTua(Model model){
-//        List<PesawatModel> listPesawat = pesawatService.getPesawatList();
-//        pesawatService.getPesawatTua(listPesawat)
-//        return "view-pesawat-tua";
-//    }
+    @RequestMapping(value = "pesawat/{id}/tambah-penerbangan", method = RequestMethod.POST)
+    private String assignPenerbangan(@PathVariable Long id, @ModelAttribute PesawatModel pesawat, Model model){
+        PesawatModel targetPesawat = pesawatService.getPesawatById(id);
+        PenerbanganModel penerbangan = penerbanganService.getPenerbanganById(pesawat.getListPenerbangan().get(0).getId());
+        targetPesawat.getListPenerbangan().add(penerbangan);
+        targetPesawat = pesawatService.updatePesawat(targetPesawat);
+        penerbangan.setPesawat(targetPesawat);
+        penerbanganService.updatePenerbangan(penerbangan);
+
+        List<TeknisiModel> listTeknisi = targetPesawat.getListTeknisi();
+        List<PenerbanganModel> listPenerbangan = penerbanganService.getAll();
+        List<PenerbanganModel> adaPenerbangan = new ArrayList<>();
+
+        for (PenerbanganModel jadwal : listPenerbangan){
+            if(!targetPesawat.getListPenerbangan().contains(jadwal)){
+                adaPenerbangan.add(jadwal);
+            }
+        }
+        model.addAttribute("pesawat", targetPesawat);
+        model.addAttribute("listTeknisi", listTeknisi);
+        model.addAttribute("listPenerbangan", adaPenerbangan);
+        return "view-pesawat";
+    }
 }

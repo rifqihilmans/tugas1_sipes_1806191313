@@ -20,4 +20,6 @@ public interface PenerbanganService {
 
     //Method untuk menghapus penerbangan
     void deletePenerbangan(PenerbanganModel penerbangan);
+
+    List<PenerbanganModel> getAll();
 }
