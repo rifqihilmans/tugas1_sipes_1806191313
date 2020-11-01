@@ -47,4 +47,17 @@ public class PenerbanganController {
         return "delete-penerbangan";
     }
 
+    @RequestMapping(value = "penerbangan/ubah/{id}", method = RequestMethod.GET)
+    private String changePenerbanganFormPage(@PathVariable Long id, Model model){
+        PenerbanganModel penerbangan = penerbanganService.getPenerbanganById(id);
+        model.addAttribute("penerbangan", penerbangan);
+        return "form-update-penerbangan";
+    }
+
+    @RequestMapping(value =  "penerbangan/ubah/{id}", method = RequestMethod.POST)
+    private String changePenerbanganSubmit(@PathVariable Long id, @ModelAttribute PenerbanganModel penerbangan, Model model){
+        PenerbanganModel newPenerbangan = penerbanganService.updatePenerbangan(penerbangan);
+        model.addAttribute("penerbangan", newPenerbangan);
+        return "update-penerbangan";
+    }
 }
